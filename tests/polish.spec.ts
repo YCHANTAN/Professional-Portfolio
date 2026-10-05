@@ -51,15 +51,14 @@ test('archive exits before replacing cards and maintains its measured height', a
   await expect(page.locator('.archive-grid')).toHaveAttribute('aria-busy', 'false');
 });
 
-test('contact fields use a light underline and clear keyboard focus', async ({ page }) => {
+test('editorial contact fields retain clear keyboard focus and readable input', async ({ page }) => {
   await page.goto('/');
   const name = page.getByLabel('Your name');
   await name.scrollIntoViewIfNeeded();
-  expect(await name.evaluate(el => getComputedStyle(el).borderTopWidth)).toBe('0px');
-  expect(await name.evaluate(el => getComputedStyle(el).borderBottomWidth)).toBe('1px');
   await name.focus();
   await page.waitForTimeout(250);
-  expect(await name.evaluate(el => getComputedStyle(el).borderBottomColor)).toBe('rgb(229, 239, 85)');
+  expect(await name.evaluate(el => getComputedStyle(el).outlineColor)).toBe('rgb(36, 69, 237)');
+  expect(await name.evaluate(el => parseFloat(getComputedStyle(el).outlineWidth))).toBeGreaterThanOrEqual(2);
   await name.fill('Recruiter');
   await expect(name).toHaveValue('Recruiter');
 });
@@ -80,13 +79,36 @@ test('selected Toolkit tabs have a full black background', async ({ page }) => {
   await page.screenshot({ path: 'test-results/toolkit-solid-tab.png' });
 });
 
-test('Send Message is compact but keeps a 44px tap target', async ({ page }) => {
+test('editorial Send Message is easy to tap and spans the writing area', async ({ page }) => {
   await page.goto('/');
   const button = page.getByRole('button', { name: 'Send Message', exact: true });
   await button.scrollIntoViewIfNeeded();
   const box = (await button.boundingBox())!;
-  expect(box.width).toBeLessThan(150);
+  expect(box.width).toBeGreaterThan(200);
   expect(box.height).toBeGreaterThanOrEqual(44);
-  expect(box.height).toBeLessThanOrEqual(46);
-  await page.screenshot({ path: 'test-results/compact-send-button.png' });
+  await page.screenshot({ path: 'test-results/editorial-send-button.png' });
 });
+
+for (const width of [320, 375, 768, 1440]) {
+  test(`editorial inquiry card reflows and supports keyboard topic selection at ${width}px`, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+    const form = page.locator('.contact-form');
+    await form.scrollIntoViewIfNeeded();
+    const topic = page.getByRole('radio', { name: 'An internship', exact: true });
+    await topic.focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(page.getByRole('radio', { name: 'A project', exact: true })).toBeChecked();
+    await page.keyboard.press('Tab');
+    await expect(page.getByLabel('What do you have in mind?')).toBeFocused();
+    await page.getByLabel('What do you have in mind?').fill('A thoughtful project begins here.');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    const box = (await form.boundingBox())!;
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(width);
+    const screenshotStyle = '.site-header, .skip-link { visibility: hidden !important; }';
+    await form.screenshot({ path: testInfo.outputPath(`inquiry-card-${width}.png`), style: screenshotStyle });
+    if (width === 1440) await page.locator('.contact-layout').screenshot({ path: testInfo.outputPath('contact-composition.png'), style: screenshotStyle });
+  });
+}
