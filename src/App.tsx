@@ -10,6 +10,8 @@ import { SectionHeading } from './components/SectionHeading';
 import { ProjectSpread } from './components/ProjectSpread';
 import { ProjectDialog } from './components/ProjectDialog';
 import { ProjectStack } from './components/motion/SectionDepth';
+import { ProjectArchive } from './components/ProjectArchive';
+import { ContentTransition } from './components/motion/ContentTransition';
 export default function App() { const [menuOpen, setMenuOpen] = useState(false);const [activeProject, setActiveProject] = useState<Project | null>(null); return <><a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header"><a href="#home" className="wordmark" aria-label="Christian Osorno home">christian<span>®</span></a><span className="header-location mono">Cebu, PH <span aria-hidden="true">↗</span> Available for an internship</span><button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close ×' : 'Menu +'}</button><nav id="main-nav" className={menuOpen ? 'is-open' : ''} aria-label="Main navigation" onKeyDown={e => { if (e.key === 'Escape') { setMenuOpen(false); document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus(); } }}>{[['Work', '#work'], ['About', '#about'], ['Archive', '#archive'], ['Let’s talk ↗', '#contact']].map(([name, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{name}</a>)}</nav></header>
     <main id="main"><div id="home">
@@ -19,4 +21,5 @@ export default function App() { const [menuOpen, setMenuOpen] = useState(false);
       <DisciplineMarquee />
       <section id="work" className="work-section" aria-label="Selected work"><SectionHeading label="01 / Selected work" title="IDEAS, OUT IN THE WORLD."><p>A few things I’ve designed, built, and explored.<br />Different disciplines. The same curiosity.</p><a className="text-link" href="#archive">See the full archive ↗</a></SectionHeading><ProjectStack>{featuredProjects.map((project, index) => <ProjectSpread key={project.id} project={project} index={index} onOpen={setActiveProject} />)}</ProjectStack></section>
       </div>
+      <section className="archive-section" id="archive"><ContentTransition reveal><SectionHeading label="04 / The whole collection" title="THE EXPLORATION CONTINUES."><p>Web apps, design studies, and computational research.<br />Take your pick.</p></SectionHeading></ContentTransition><ProjectArchive onOpen={setActiveProject} /></section>
       </main><ProjectDialog project={activeProject} onClose={() => setActiveProject(null)} /></>; }
