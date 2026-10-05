@@ -89,17 +89,15 @@ test('editorial Send Message is easy to tap and spans the writing area', async (
   await page.screenshot({ path: 'test-results/editorial-send-button.png' });
 });
 
-for (const width of [320, 375, 768, 1440]) {
-  test(`editorial inquiry card reflows and supports keyboard topic selection at ${width}px`, async ({ page }, testInfo) => {
+for (const width of [320, 375, 768, 1280, 1366, 1440, 1920]) {
+  test(`contact composition reflows and supports the simplified form at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 1000 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     const form = page.locator('.contact-form');
     await form.scrollIntoViewIfNeeded();
-    const topic = page.getByRole('radio', { name: 'An internship', exact: true });
-    await topic.focus();
-    await page.keyboard.press('ArrowRight');
-    await expect(page.getByRole('radio', { name: 'A project', exact: true })).toBeChecked();
+    await expect(form.getByRole('radio')).toHaveCount(0);
+    await page.getByLabel('Your email').focus();
     await page.keyboard.press('Tab');
     await expect(page.getByLabel('What do you have in mind?')).toBeFocused();
     await page.getByLabel('What do you have in mind?').fill('A thoughtful project begins here.');
@@ -107,8 +105,16 @@ for (const width of [320, 375, 768, 1440]) {
     const box = (await form.boundingBox())!;
     expect(box.x).toBeGreaterThanOrEqual(0);
     expect(box.x + box.width).toBeLessThanOrEqual(width);
+    const info = (await page.locator('.contact-info').boundingBox())!;
+    expect(info.y + info.height).toBeLessThan(box.y);
+    if (width >= 1024) {
+      expect(box.width).toBeGreaterThan(box.height);
+      const heading = (await form.locator('.inquiry-heading').boundingBox())!;
+      const fields = (await form.locator('.inquiry-fields').boundingBox())!;
+      expect(fields.x).toBeGreaterThan(heading.x + heading.width);
+    }
     const screenshotStyle = '.site-header, .skip-link { visibility: hidden !important; }';
     await form.screenshot({ path: testInfo.outputPath(`inquiry-card-${width}.png`), style: screenshotStyle });
-    if (width === 1440) await page.locator('.contact-layout').screenshot({ path: testInfo.outputPath('contact-composition.png'), style: screenshotStyle });
+    await page.locator('.contact-layout').screenshot({ path: testInfo.outputPath(`contact-composition-${width}.png`), style: screenshotStyle });
   });
 }
