@@ -312,6 +312,17 @@
 }
 
 /* An editorial correspondence card: expressive framing, quiet writing space. */
+.site-header nav a, .site-header nav a:last-child { position: relative; border-bottom: 0; }
+.nav-active-line { position: absolute; inset: auto 0 0; height: 2px; background: currentColor; pointer-events: none; }
+.skills-section .skill-group { display: block; padding: 1.25rem 1.4rem 1.5rem; margin-bottom: 1.5rem; border: 1px solid #171714; background: var(--paper); color: var(--ink); box-shadow: 6px 6px 0 #171714; }
+.skills-section .skill-group h3 { padding: 0 0 1rem; font-size: .7rem; color: var(--blue); text-transform: uppercase; letter-spacing: .06em; }
+.skills-section .tags { gap: .75rem; }
+.skills-section .tags span { background: #ead7df; color: #171714; border: 1px solid #171714; box-shadow: 3px 3px 0 #171714; padding: .6rem .8rem; font-size: .78rem; }
+.skills-section .tags span:nth-child(3n + 2) { background: #d9e2d0; }
+.skills-section .tags span:nth-child(3n) { background: #2445ed; color: #f4f0e6; }
+@media (max-width: 700px) {
+  .skills-section .skill-group { padding: 1.1rem; box-shadow: 4px 4px 0 #171714; }
+}
 .contact-section h2 { font-size: clamp(3rem, 8.6vw, 8.5rem); line-height: .94; margin: clamp(2rem, 4vw, 3rem) 0; }
 .contact-section .contact-star { font-size: clamp(3rem, 7vw, 6.5rem); }
 .contact-layout { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
