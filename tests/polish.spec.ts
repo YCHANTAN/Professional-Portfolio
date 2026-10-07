@@ -30,7 +30,7 @@ test('social icons are accessible and mobile targets are easy to tap', async ({ 
   await expect(socials.getByRole('link', { name: 'Email Christian Osorno' })).toHaveAttribute('href', 'mailto:christianosorno20@gmail.com');
 });
 
-test('archive exits before replacing cards and maintains its measured height', async ({ page }) => {
+test('archive exits before replacing cards and resizes to its visible cards', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   await page.locator('#archive').scrollIntoViewIfNeeded();
@@ -45,7 +45,7 @@ test('archive exits before replacing cards and maintains its measured height', a
   expect(await page.locator('.archive-entry:not([hidden])').count()).toBe(7);
   await expect(page.locator('.archive-entry:not([hidden])')).toHaveCount(1);
   await expect(page.locator('.archive-grid')).toHaveAttribute('aria-busy', 'false');
-  expect((await page.locator('.archive-grid').boundingBox())!.height).toBeCloseTo(initialHeight, 0);
+  expect((await page.locator('.archive-grid').boundingBox())!.height).toBeLessThan(initialHeight);
   await page.locator('.archive-filters').getByRole('button', { name: /^All work/ }).click();
   await expect(page.locator('.archive-entry:not([hidden])')).toHaveCount(7);
   await expect(page.locator('.archive-grid')).toHaveAttribute('aria-busy', 'false');
