@@ -1,0 +1,74 @@
+/* Native scrolling stays accessible, with a slim accent-colored thumb. */
+html, .project-dialog, textarea { scrollbar-width: thin; scrollbar-color: var(--blue) var(--paper); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--blue); border: 2px solid var(--paper); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink); }
+.site-header { border-bottom: 0; }
+.site-header::before { border-bottom: 1px solid var(--ink); }
+.header-actions { display: flex; align-items: center; justify-content: flex-end; gap: clamp(.65rem, 1.4vw, 1.5rem); margin-left: auto; }
+.site-header .header-location { margin: 0; white-space: nowrap; }
+.site-header nav { gap: clamp(.8rem, 1.4vw, 1.6rem); }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+.theme-toggle:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.theme-toggle:active { transform: translateY(1px); }
+@media (max-width: 700px) {
+  .site-header { gap: .65rem; }
+  .site-header .wordmark { margin-right: auto; }
+}
+@media (min-width: 1101px) {
+  .site-header { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 1rem; }
+  .site-header .wordmark { justify-self: start; }
+  .site-header .header-location { justify-self: center; font-size: .58rem; }
+  .header-actions { justify-self: end; margin-left: 0; }
+  .site-header nav { font-size: .75rem; }
+}
+
+/* Neutral surfaces change; vivid editorial art keeps its original palette. */
+:root[data-theme="dark"] { --paper: #101216; --ink: #f4f0e6; --blue: #99a7ff; --line: #4a5261; }
+[data-theme="dark"] .portrait-card { color: #171714; }
+[data-theme="dark"] .collage-code,
+[data-theme="dark"] .collage-sticker,
+[data-theme="dark"] .discipline-strip,
+[data-theme="dark"] .skip-link,
+[data-theme="dark"] .inquiry-stamp { color: #171714; }
+[data-theme="dark"] .portrait-fallback { background-color: #2445ed; }
+[data-theme="dark"] .image-fallback { color: #171714; }
+[data-theme="dark"] .portrait-fallback { color: var(--acid); }
+[data-theme="dark"] .project-spread { color: #171714; }
+[data-theme="dark"] .tone-blue { --tone: #2445ed; }
+[data-theme="dark"] .spread-educaite { color: #f4f0e6; }
+[data-theme="dark"] .art-headline { color: #f4f0e6; }
+[data-theme="dark"] .spread-educaite .art-headline { color: var(--acid); }
+[data-theme="dark"] .image-caption { background: #171714; color: #f4f0e6; }
+[data-theme="dark"] .about-art { background: #2445ed; color: #f4f0e6; }
+[data-theme="dark"] .card-open { background: #f4f0e6; color: #171714; }
+[data-theme="dark"] .skills-section { background: #191e25; }
+[data-theme="dark"] .skills-section .skill-group { background: #2d3645; border-color: #69758b; box-shadow: 6px 6px 0 #080b10; }
+[data-theme="dark"] .skills-section .tags span { border-color: #171714; }
+[data-theme="dark"] .skill-switch button[aria-pressed="true"] { color: #171714; }
+[data-theme="dark"] .skill-switch button:hover:not([aria-pressed="true"]) { background: #f4f0e612; }
+[data-theme="dark"] .tags span { border-color: #838b77; }
+[data-theme="dark"] .archive-filters button:hover:not([aria-pressed="true"]) { color: #171714; }
+[data-theme="dark"] .inquiry-send-arrow { color: #171714; }
+[data-theme="dark"] .contact-section { background: #293a78; color: #f4f0e6; }
+[data-theme="dark"] .contact-form { background: #1b2028; color: #f4f0e6; border-color: #596476; box-shadow: 9px 9px 0 #080b10; }
+[data-theme="dark"] .inquiry-masthead,
+[data-theme="dark"] .inquiry-rule { border-color: #596476; }
+[data-theme="dark"] .contact-form input:not(.honeypot),
+[data-theme="dark"] .contact-form textarea { background: #131820; border-color: #596476; color: #f4f0e6; }
+[data-theme="dark"] .contact-form input::placeholder,
+[data-theme="dark"] .contact-form textarea::placeholder,
+[data-theme="dark"] .inquiry-message-meta { color: #c1c8d3; }
+[data-theme="dark"] .contact-form input:not(.honeypot):focus,
+[data-theme="dark"] .contact-form textarea:focus { background: #1a2330; border-color: var(--blue); }
+[data-theme="dark"] .contact-form input:not(.honeypot):disabled,
+[data-theme="dark"] .contact-form textarea:disabled { background: #293240; color: #c1c8d3; }
+[data-theme="dark"] .contact-form .form-actions .button { background: #f4f0e6; border-color: #f4f0e6; color: #171714; }
+[data-theme="dark"] .contact-form .form-actions .button:hover:not(:disabled) { background: var(--acid); border-color: var(--acid); }
+[data-theme="dark"] .contact-form .form-actions .button.button-sent { background: #304c3b; border-color: #688d75; color: #f4f0e6; }
+[data-theme="dark"] .contact-form .form-status:not(:empty) { color: #171714; }
+[data-theme="dark"] .project-spread .round-link:hover .round-arrow { background: #171714; color: #f4f0e6; }
+[data-theme="dark"] .inquiry-stamp { border-color: #171714; box-shadow: 3px 3px 0 #080b10; }
+@media (max-width: 700px) { [data-theme="dark"] .contact-form { box-shadow: 6px 6px 0 #080b10; } }
+@media (prefers-reduced-motion: reduce) { .theme-toggle:active { transform: none; } }

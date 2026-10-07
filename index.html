@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f4f0e6" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      (() => {
+        let saved;
+        try { saved = localStorage.getItem('portfolio-theme'); } catch {}
+        const theme = saved === 'light' || saved === 'dark' ? saved : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#101216' : '#f4f0e6';
+      })();
+    </script>
     <meta name="description" content="Christian A. Osorno — software engineer, UI/UX designer and AI automation engineer in Cebu, Philippines. Selected work and a fresh perspective. Seeking a 240-hour internship." />
     <title>Christian Osorno — Designer's eye. Developer's mind.</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
