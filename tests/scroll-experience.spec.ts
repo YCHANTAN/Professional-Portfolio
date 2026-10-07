@@ -285,6 +285,24 @@ test('desktop opening stays beneath the foreground until fully covered, then rel
   await expect.poll(() => scale(plane)).toBeGreaterThan(.99);
 });
 
+test('mouse project interaction preserves LIFO stacking in both scroll directions', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  const cards = page.locator('.featured-spreads .stack-card');
+  await expect(page.locator('.featured-spreads')).toHaveAttribute('data-stack-enabled', 'true');
+  const tops = await cards.evaluateAll(els => els.map(el => el.getBoundingClientRect().top + scrollY));
+  await cards.first().getByRole('button', { name: /^Read project notes/ }).click();
+  await page.getByRole('button', { name: 'Close project details' }).click();
+  for (const index of [1, 2, 3, 2, 1, 0]) {
+    const card = cards.nth(index);
+    const pin = await card.evaluate(el => parseFloat(getComputedStyle(el).top));
+    await scrollTo(page, tops[index] - pin + 1);
+    await expect.poll(() => card.evaluate(el => {
+      const box = el.getBoundingClientRect();
+      return el.contains(document.elementFromPoint(box.left + 30, box.top + 60));
+    })).toBe(true);
+  }
+});
+
 test('desktop cards sequentially stack without scaling and the terminal card releases the pile to About', async ({ page }, testInfo) => {
   const stack = page.locator('[data-motion="project-stack"]');
   const cards = stack.locator('.stack-card');

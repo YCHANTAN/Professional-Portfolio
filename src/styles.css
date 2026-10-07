@@ -290,7 +290,7 @@
   .featured-spreads[data-stack-enabled="true"] .project-spread { box-shadow: 0 -8px 24px rgb(23 23 20 / .08); }
    /* Covered cards remain reachable. Focus lifts the original card above the
       pile, never a clone, without changing document geometry. */
-  .featured-spreads[data-stack-enabled="true"] .stack-card:focus-within { z-index: 20; }
+  .featured-spreads[data-stack-enabled="true"] .stack-card:has(:focus-visible) { z-index: 20; }
 }
 @media (max-width: 700px) {
   .featured-spreads { --stack-step: 8px; }
