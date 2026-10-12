@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 for (const width of [375, 1440]) {
-  test(`featured images and stamps stay static during scroll and hover at ${width}px`, async ({ page }) => {
+  test(`featured images and background artwork stay static during scroll and hover at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await page.goto('/');
@@ -14,15 +14,14 @@ for (const width of [375, 1440]) {
       await expect(surface).toHaveAttribute('data-image-motion', 'static');
       const measure = () => surface.evaluate(el => {
         const rect = el.getBoundingClientRect();
-        return Array.from(el.querySelectorAll('.spread-static-image, .spread-static-image img, .art-stamp, .art-headline')).map(child => {
+        return Array.from(el.querySelectorAll('.spread-static-image, .spread-static-image img, .project-backdrop')).map(child => {
           const r = child.getBoundingClientRect(), s = getComputedStyle(child);
           return { name: child.className || child.tagName, x: r.x - rect.x, y: r.y - rect.y, width: r.width, height: r.height, transform: s.transform, translate: s.translate, rotate: s.rotate, scale: s.scale };
         });
       });
       const before = await measure();
-      expect(before.length).toBeGreaterThanOrEqual(4);
-      // Artwork retains its original decorative rotations; only the image must
-      // have no transform at all. Stamps/headlines must not change with input.
+      expect(before.length).toBe(3);
+      // Screenshots and decorative backgrounds stay fixed within each card.
       for (const child of before.slice(0, 2)) expect([child.transform, child.translate, child.rotate, child.scale]).toEqual(['none', 'none', 'none', 'none']);
       await page.evaluate(() => window.scrollBy({ top: 80, behavior: 'instant' }));
       await surface.hover();

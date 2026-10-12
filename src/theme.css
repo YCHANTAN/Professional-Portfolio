@@ -100,3 +100,32 @@ html, .project-dialog, textarea { scrollbar-width: thin; scrollbar-color: var(--
 [data-theme="dark"] .inquiry-stamp { border-color: #171714; box-shadow: 3px 3px 0 #080b10; }
 @media (max-width: 700px) { [data-theme="dark"] .contact-form { box-shadow: 6px 6px 0 #080b10; } }
 @media (prefers-reduced-motion: reduce) { .theme-toggle:active { transform: none; } }
+
+/* Keep the full device composition visible across spreads, archive and notes. */
+[data-image-kind="mockup"] { background: #fff; }
+[data-image-kind="mockup"] img { object-fit: contain; padding: .75rem .75rem 1.8rem; }
+[data-image-kind="mockup"] .image-caption { background: #f4f0e6; color: #171714; }
+.dialog-image .image-caption { max-width: calc(100% - 2rem); }
+
+/* Project-specific editorial canvases: artwork stays at the edges of the media. */
+[data-project-art] { position: relative; isolation: isolate; overflow: hidden; --art-paper: #f5e6e9; --art-ink: #a44768; background: var(--art-paper) !important; }
+[data-project-art="elven"] { --art-paper: #efe6dc; --art-ink: #527354; }
+[data-project-art="laundry"] { --art-paper: #e8eaf7; --art-ink: #8574a1; }
+[data-project-art="registration"] { --art-paper: #eef0d2; --art-ink: #637443; }
+[data-project-art="educaite"] { --art-paper: #dcf1f2; --art-ink: #297a88; }
+[data-project-art="pasabuy"] { --art-paper: #e7e3fc; --art-ink: #6552ce; }
+[data-project-art="marine"] { --art-paper: #d7ece8; --art-ink: #28787b; }
+[data-project-art="antifungal"] { --art-paper: #e0e8f0; --art-ink: #42678a; }
+.project-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; fill: none; stroke: var(--art-ink); stroke-width: 3; opacity: .55; }
+.project-backdrop .backdrop-grid { stroke-width: .6; opacity: .2; }
+.project-backdrop .backdrop-spark { stroke-width: 5; }
+[data-project-art] img { z-index: 1; }
+.card-image[data-project-art] > img, .dialog-image[data-project-art] > img { position: relative; }
+[data-project-art] .image-caption, [data-project-art] .card-open { z-index: 3; }
+[data-image-kind="mockup"][data-project-art] img { padding: 1.5rem 2.2rem 2.2rem; }
+[data-image-kind="illustration"][data-project-art] img { padding: 1.5rem 2.2rem 2.2rem; }
+.spread-art[data-project-art] img { padding: 2.5rem 3.5rem; }
+@media (max-width: 700px) {
+  [data-project-art] img, .spread-art[data-project-art] img { padding: 1.3rem 1.4rem 2rem; }
+  .project-backdrop { stroke-width: 3.5; }
+}

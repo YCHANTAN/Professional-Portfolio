@@ -107,6 +107,7 @@ test('normal-motion featured images remain static while scrolling', async ({ pag
 
 test('every archive project opens and failed images have visible fallbacks', async ({ page }) => {
   await page.route('https://images.unsplash.com/**', route => route.abort());
+  await page.route('**/projects/**', route => route.abort());
   await page.goto('/');
   const openers = page.locator('.archive-grid .card-image');
   for (let index = 0; index < 7; index++) {
