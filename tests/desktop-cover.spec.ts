@@ -17,7 +17,7 @@ for (const viewport of [
     const strip = (await page.locator('.discipline-strip').boundingBox())!;
     expect(header.height).toBe(60);
     expect(strip.y).toBeCloseTo(viewport.height, 0);
-    for (const selector of ['.hero-meta', '.hero h1', '.hero-intro', '.portrait-card', '.collage-code', '.collage-sticker', '.collage-note', '.internship-note']) {
+    for (const selector of ['.hero-meta', '.hero h1', '.hero-intro', '.hero-portrait', '.hero-socials']) {
       const box = (await page.locator(selector).boundingBox())!;
       expect(box.y, selector).toBeGreaterThanOrEqual(header.height);
       expect(box.y + box.height, selector).toBeLessThanOrEqual(strip.y + 1);
@@ -33,13 +33,13 @@ for (const viewport of [
 }
 
 for (const width of [375, 768, 1100]) {
-  test(`desktop cover overrides leave ${width}px layout unchanged`, async ({ page }) => {
+  test(`desktop cover overrides leave ${width}px layout independent of desktop rules`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     const geometry = () => page.evaluate(() =>
-      ['.site-header', '.hero', '.hero h1', '.hero-bottom', '.hero-intro', '.hero-collage', '.discipline-strip'].map(selector => {
+      ['.site-header', '.hero', '.hero h1', '.hero-copy', '.hero-intro', '.hero-socials', '.discipline-strip'].map(selector => {
         const rect = document.querySelector(selector)!.getBoundingClientRect();
         return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
       }));

@@ -1,15 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-test('editorial text stays accessible and finishes with readable canonical content', async ({ page }) => {
+test('hero quote and capability cards stay absent', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
-  const intro = page.locator('[data-motion="hero-intro-blur"]');
-  await expect(intro.locator('.motion-sr-only')).toHaveText('A little instinct. A lot of intention.');
-  await expect(intro.locator('[aria-hidden="true"] br')).toHaveCount(1);
-  const code = page.locator('[data-motion="curiosity-code"]');
-  await expect(code).toHaveAttribute('aria-hidden', 'true');
-  await expect(code).toHaveText('curiosity: Infinity');
-  await expect.poll(() => intro.locator('.blur-intro-word').last().evaluate(el => getComputedStyle(el).filter)).toMatch(/^(none|blur\(0px\))$/);
+  await expect(page.locator('[data-motion="hero-intro-blur"]')).toHaveCount(0);
+  await expect(page.getByText('A little instinct.', { exact: false })).toHaveCount(0);
+  await expect(page.locator('.header-location')).toContainText('Looking for work');
+  await expect(page.locator('.hero-capability')).toHaveCount(0);
 });
 
 test('magnetic arrow moves while the native link stays stationary and returns on leave', async ({ page }) => {
@@ -37,7 +34,6 @@ test('reduced motion cancels text and magnetic accents without losing focus', as
   await link.focus();
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(link).toBeFocused();
-  await expect(page.locator('[data-motion="curiosity-code"]')).toHaveText('curiosity: Infinity');
   expect(await page.locator('.blur-intro-word').evaluateAll(words => words.every(word => getComputedStyle(word).filter === 'none' && getComputedStyle(word).opacity === '1'))).toBe(true);
   const bounds = (await link.boundingBox())!;
   await page.mouse.move(bounds.x + bounds.width - 10, bounds.y + 10);

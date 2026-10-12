@@ -4,7 +4,7 @@ import { useActiveSection } from './components/useActiveSection';
 import { useMotionPreference } from './components/motion/useMotionPreference';
 import { experience, featuredProjects, profile, type Project } from './data/portfolio';
 import { SectionHeading } from './components/SectionHeading';
-import { ResponsiveImage } from './components/ResponsiveImage';
+import { Hero } from './components/Hero';
 import { ProjectSpread } from './components/ProjectSpread';
 import { ProjectArchive } from './components/ProjectArchive';
 import { SocialLinks } from './components/SocialLinks';
@@ -14,9 +14,6 @@ import { ProjectDialog } from './components/ProjectDialog';
 import { ContactForm } from './components/ContactForm';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ContentTransition } from './components/motion/ContentTransition';
-import { BlurIntro } from './components/motion/BlurIntro';
-import { CuriosityCode } from './components/motion/CuriosityCode';
-import { ExploreLink } from './components/motion/ExploreLink';
 import { DisciplineMarquee } from './components/motion/DisciplineMarquee';
 import { OpeningDepth, ProjectStack } from './components/motion/SectionDepth';
 
@@ -27,10 +24,10 @@ export default function App() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className="site-header"><a href="#home" className="wordmark" aria-label="Christian Osorno home">christian<span>®</span></a><span className="header-location mono">Cebu, PH <span aria-hidden="true">↗</span> Looking for work</span><div className="header-actions"><nav id="main-nav" className={menuOpen ? 'is-open' : ''} aria-label="Main navigation" onKeyDown={e => { if (e.key === 'Escape') { setMenuOpen(false); document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus(); } }}>{[['Work', '#work'], ['About', '#about'], ['Archive', '#archive'], ['Let’s talk ↗', '#contact']].map(([name, href]) => <a key={href} href={href} aria-current={activeSection === href ? 'location' : undefined} onClick={() => setMenuOpen(false)}>{name}{activeSection === href && <motion.span className="nav-active-line" layoutId="nav-active-line" transition={{ duration: reducedMotion ? 0 : .25, ease: [.22, 1, .36, 1] }} aria-hidden="true" />}</a>)}</nav><ThemeToggle /><button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close ×' : 'Menu +'}</button></div></header>
+    <header className="site-header"><a href="#home" className="wordmark" aria-label="Christian Osorno home">christian<span aria-hidden="true">•</span></a><div className="header-actions"><nav id="main-nav" className={menuOpen ? 'is-open' : ''} aria-label="Main navigation" onKeyDown={e => { if (e.key === 'Escape') { setMenuOpen(false); document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus(); } }}>{[['Work', '#work'], ['About', '#about'], ['Archive', '#archive'], ['Let’s talk ↗', '#contact']].map(([name, href]) => <a key={href} href={href} aria-current={activeSection === href ? 'location' : undefined} onClick={() => setMenuOpen(false)}>{name}{activeSection === href && <motion.span className="nav-active-line" layoutId="nav-active-line" transition={{ duration: reducedMotion ? 0 : .25, ease: [.22, 1, .36, 1] }} aria-hidden="true" />}</a>)}</nav><span className="header-location mono"><span className="header-status-dot" aria-hidden="true" /><strong>Cebu, PH</strong><span aria-hidden="true">/</span>Looking for work</span><ThemeToggle /><button className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close ×' : 'Menu +'}</button></div></header>
     <main id="main">
       <OpeningDepth>
-      <section className="hero" aria-labelledby="hero-title"><div className="hero-meta mono"><span>Christian A. Osorno / Portfolio</span><span>Built with curiosity. Made in Cebu.</span></div><div className="hero-title-wrap" data-motion="hero-title"><h1 id="hero-title"><span>DESIGNER’S EYE.</span><span>DEVELOPER’S MIND.</span></h1><span className="hero-spark" aria-hidden="true">✳</span></div><div className="hero-bottom"><div className="hero-intro"><BlurIntro className="serif" lines={['A little instinct.', 'A lot of intention.']} /><p>I’m Christian — a <strong>Software Engineer, UI/UX Designer & AI Automation Engineer</strong> turning complex ideas into things that feel simple.</p><div className="hero-actions"><ExploreLink /></div><div className="hero-socials"><span className="mono">ELSEWHERE /</span><SocialLinks compact includeResume /></div></div><div className="hero-collage" data-motion="hero-collage"><div className="collage-code mono" aria-hidden="true"><span>const perspective = {'{'}</span><span>  design: 'human',</span><span>  code: 'considered',</span><CuriosityCode /><span>{'}'};</span></div><span className="collage-sticker">MADE TO<br /><em>make sense.</em></span><span className="collage-note serif">hello, world.</span></div><a className="work-availability-note" href="#contact"><span className="availability-dot" />Looking for<br /><strong>work opportunities</strong><span aria-hidden="true">↗</span></a></div><figure className="hero-portrait"><ResponsiveImage src="/christian-hero-collage.png" alt="Christian A. Osorno smiling while working on a MacBook" portrait eager /></figure></section>
+      <Hero />
       </OpeningDepth>
       <div className="selected-work-foreground">
       <DisciplineMarquee />

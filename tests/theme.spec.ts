@@ -48,9 +48,10 @@ for (const width of [320, 1101, 1366, 1920]) {
     if (width > 1100) {
       const location = (await page.locator('.header-location').boundingBox())!;
       const nav = (await page.locator('#main-nav').boundingBox())!;
-      expect(location.x + location.width / 2).toBeCloseTo(width / 2, 0);
-      expect(location.x + location.width).toBeLessThan(nav.x);
-      expect(box.x).toBeGreaterThan(nav.x + nav.width);
+      expect(nav.x + nav.width / 2).toBeGreaterThan(width * .45);
+      expect(nav.x + nav.width / 2).toBeLessThan(width * .55);
+      expect(location.x).toBeGreaterThan(nav.x + nav.width);
+      expect(box.x).toBeGreaterThan(location.x + location.width);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     await page.screenshot({ path: testInfo.outputPath('dark-cover.png') });
