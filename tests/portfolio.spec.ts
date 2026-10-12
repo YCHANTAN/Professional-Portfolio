@@ -37,7 +37,7 @@ test('archive filters, skills, dialog keyboard containment and focus restoration
   await page.goto('/');
   await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(7);
   await page.getByRole('button', { name: /^AI & research/ }).click();
-  await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(3);
+  await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(2);
   const opener = page.getByRole('button', { name: 'Read about Marine Biodegradation' });
   await opener.click();
   const dialog = page.getByRole('dialog');

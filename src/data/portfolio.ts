@@ -31,7 +31,7 @@ export const projects: Project[] = [
     summary: 'Making the everyday laundry workflow a little clearer.',
     description: 'A laundry management application with an interface for following orders, notifications, and inventory.',
     details: ['Order tracking for laundry workflows.', 'Notifications to keep order information visible.', 'Inventory management built into the application.'],
-    stack: ['React', 'TypeScript', 'Tailwind CSS'], image: '/projects/sofia-laundry-device-cutout.png', imageAlt: 'Sofia’s Laundry sign-in interface displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue',
+    stack: ['React', 'TypeScript', 'Tailwind CSS'], image: '/projects/sofia-laundry-device-cutout.png', imageAlt: 'Sofia’s Laundry sign-in interface displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue', featured: true,
   },
   {
     id: 'registration', title: 'Student Registration App', category: 'Development', discipline: 'Full-stack / Education',
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     summary: 'Exploring where computation meets ocean conservation.',
     description: 'An in-silico research project exploring plastics degradation under ocean conditions through Python, data analysis, and machine learning.',
     details: ['Data-driven investigation of synthetic plastics degradation.', 'Machine learning exploration of marine environmental conditions.', 'Computational research at the intersection of engineering and environmental science; no experimental outcomes are claimed here.'],
-    stack: ['Python', 'Data analysis', 'Machine learning', 'In-silico research'], image: '/projects/marine-biodegradation-illustration.png', imageAlt: 'Conceptual ocean conservation artwork with a sea turtle, schooling fish and coral', imageKind: 'illustration', tone: 'green', featured: true, headline: 'A DIFFERENT\nKIND OF DEEP DIVE.',
+    stack: ['Python', 'Data analysis', 'Machine learning', 'In-silico research'], image: '/projects/marine-biodegradation-illustration.png', imageAlt: 'Conceptual ocean conservation artwork with a sea turtle, schooling fish and coral', imageKind: 'illustration', tone: 'green', headline: 'A DIFFERENT\nKIND OF DEEP DIVE.',
   },
   {
     id: 'antifungal', title: 'Antifungal Molecule Design', category: 'AI & research', discipline: 'Computational biology / Molecular design',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     stack: ['Molecular docking', 'QSAR', 'Computational biology'], image: '/projects/antifungal-molecule-illustration.png', imageAlt: 'Conceptual molecular design artwork with a ball-and-stick molecule and yeast cells', imageKind: 'illustration', tone: 'pink',
   },
   {
-    id: 'educaite', title: 'EducAIte', category: 'AI & research', discipline: 'AI / Learning experience',
+    id: 'educaite', title: 'EducAIte', category: 'Development', discipline: 'AI / Web Application',
     summary: 'A study companion for making sense of the next big idea.',
     description: 'An AI-assisted learning application bringing tutoring, summaries, and study planning into a React and TypeScript experience.',
     details: ['LLM-powered tutoring experiences.', 'Study summaries to organize learning material.', 'Planners to support study organization.'],
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     stack: ['Figma', 'User journeys', 'Wireframing', 'UI/UX design'], image: '/projects/pasabuy-device-cutout.png', imageAlt: 'Pasabuy courier dashboard and onboarding displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'orange', featured: true, headline: 'SMALL ERRANDS.\nSHARED CONNECTIONS.',
   },
 ];
-export const featuredProjects = ['elven', 'pasabuy', 'educaite', 'marine'].map(id => projects.find(p => p.id === id)!);
+export const featuredProjects = ['elven', 'pasabuy', 'educaite', 'laundry'].map(id => projects.find(p => p.id === id)!);
 export const experience = [
   { date: '2024 — present', role: 'Freelance designer & developer', place: 'Christian.dev', detail: 'Bringing intuitive, user-centered design and scalable engineering together.' },
   { date: '2024', role: 'UI/UX Design Intern', place: 'PixelCraft Studios', detail: 'Journey mapping, Figma prototyping, and usability.' },
