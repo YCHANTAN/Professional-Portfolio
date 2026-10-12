@@ -48,7 +48,7 @@ export function ProjectArchive({ onOpen }: { onOpen: (project: Project) => void 
         entries.forEach((entry, index) => {
           const style = getComputedStyle(entry);
           const fresh = phase === 'entry' || initial;
-          controls.push(animate(entry, { opacity: [fresh ? .55 : Number(style.opacity), 1], y: [fresh ? (initial ? 14 : 8) : (style.transform === 'none' ? 0 : new DOMMatrixReadOnly(style.transform).m42), 0] }, { duration: initial ? .45 : .18, delay: Math.min(index * .025, .05), ease: [.22, 1, .36, 1] }));
+          controls.push(animate(entry, { opacity: [fresh ? (initial ? .1 : .55) : Number(style.opacity), 1], y: [fresh ? (initial ? 28 : 8) : (style.transform === 'none' ? 0 : new DOMMatrixReadOnly(style.transform).m42), 0] }, { duration: initial ? .65 : .18, delay: initial ? Math.min(index * .07, .35) : Math.min(index * .025, .05), ease: [.22, 1, .36, 1] }));
         });
         void Promise.all(controls).then(() => { if (!cancelled) setPhase('idle'); });
       }

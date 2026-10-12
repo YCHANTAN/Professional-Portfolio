@@ -17,7 +17,7 @@ export function ContentTransition({ children, value = '', className = '', reveal
   const running = useRef(false);
   const previous = useRef(value);
   const entered = useRef(false);
-  const inView = useInView(ref, { once: true, amount: 'some' });
+  const inView = useInView(ref, { once: true, amount: 'some', margin: '0px 0px -40px 0px' });
   useLayoutEffect(() => {
     const changed = previous.current !== value;
     previous.current = value;
@@ -31,18 +31,22 @@ export function ContentTransition({ children, value = '', className = '', reveal
       element.style.transform = 'none';
       return;
     }
+    if (reveal && !inView && !entered.current) {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(28px)';
+      return;
+    }
     if (!changed && !arriving && !running.current) return;
-    // Not hidden while waiting for the viewport. The modest fade remains readable.
     // One collection only; controls and their focus stay outside the animated surface.
     // Retarget interrupted transitions from the live presentation, not a new
     // hard-coded start. A fresh transition gets a deliberate arrival offset.
     const presentation = getComputedStyle(element);
-    const startOpacity = running.current ? Number(presentation.opacity) : arriving ? .65 : .45;
-    const startY = running.current ? (presentation.transform === 'none' ? 0 : new DOMMatrixReadOnly(presentation.transform).m42) : arriving ? 14 : 24;
+    const startOpacity = running.current ? Number(presentation.opacity) : arriving ? 0 : .45;
+    const startY = running.current ? (presentation.transform === 'none' ? 0 : new DOMMatrixReadOnly(presentation.transform).m42) : arriving ? 28 : 24;
     running.current = true;
     let cancelled = false;
     const controls = animate(element, { opacity: [startOpacity, 1], y: [startY, 0] }, {
-      duration: arriving ? .45 : .48, delay: arriving ? delay : 0, ease: [.22, 1, .36, 1],
+      duration: arriving ? .7 : .48, delay: arriving ? Math.min(delay, .3) : 0, ease: [.22, 1, .36, 1],
     });
     void controls.then(() => { if (!cancelled) running.current = false; });
     return () => {
@@ -50,5 +54,12 @@ export function ContentTransition({ children, value = '', className = '', reveal
       controls.stop();
     };
   }, [value, reducedMotion, reveal, inView, delay]);
-  return <div ref={ref} className={`content-transition ${className}`} data-reveal={reveal || undefined}>{children}</div>;
+  return <div ref={ref} className={`content-transition ${className}`} data-reveal={reveal || undefined} onFocusCapture={() => {
+    const element = ref.current;
+    if (element && reveal && !entered.current) {
+      entered.current = true;
+      element.style.opacity = '1';
+      element.style.transform = 'none';
+    }
+  }}>{children}</div>;
 }

@@ -56,7 +56,7 @@ export default function App() {
             <a href={`tel:${profile.phone}`}>{profile.phone}</a>
             <span className="mono contact-location">Cebu, Philippines / Open to conversations</span>
           </div>
-        </ContentTransition><ContentTransition reveal delay={.08}><ContactForm /></ContentTransition></div><footer className="site-footer"><a className="wordmark" href="#home">christian<span>®</span></a><SocialLinks /><a href="#home" className="back-top">Back to top ↑</a><div className="footer-bottom mono"><span>© {new Date().getFullYear()} Christian A. Osorno</span><span>Designed with intention. Built with React.</span></div></footer></section>
+        </ContentTransition><ContentTransition reveal delay={.08}><ContactForm /></ContentTransition></div><ContentTransition reveal><footer className="site-footer"><a className="wordmark" href="#home">christian<span>®</span></a><SocialLinks /><a href="#home" className="back-top">Back to top ↑</a><div className="footer-bottom mono"><span>© {new Date().getFullYear()} Christian A. Osorno</span><span>Designed with intention. Built with React.</span></div></footer></ContentTransition></section>
     </main>
     <ProjectDialog project={activeProject} onClose={() => setActiveProject(null)} />
   </>;
