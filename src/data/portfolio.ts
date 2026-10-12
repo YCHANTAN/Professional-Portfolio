@@ -74,7 +74,7 @@ export const experience = [
   { date: '2024 — present', role: 'Freelance designer & developer', place: 'Christian.dev', detail: 'Bringing intuitive, user-centered design and scalable engineering together.' },
   { date: '2024', role: 'UI/UX Design Intern', place: 'PixelCraft Studios', detail: 'Journey mapping, Figma prototyping, and usability.' },
   { date: '2023 — 2024', role: 'Environmental project', place: 'Coral Triangle Center', detail: 'Exploring the intersection of environmental research and technology.' },
-  { date: '2023 — present', role: 'Computer Science student', place: 'University of Cebu — Main Campus', detail: '4th-year CS student, seeking a 240-hour internship.' },
+  { date: '2023 — present', role: 'Computer Science student', place: 'University of Cebu — Main Campus', detail: '4th-year CS student, looking for work opportunities.' },
 ];
 export const skills = {
   Design: [
