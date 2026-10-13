@@ -72,7 +72,7 @@ html, body { overflow-x: clip; }
 .hero.reference-hero .hero-portrait { height: auto; aspect-ratio: 1117 / 975; overflow: clip; }
 .hero.reference-hero .hero-portrait img { position: absolute; inset: 0 auto auto -16%; width: 130%; height: auto; object-fit: contain; object-position: center top; }
 @media (min-width: 1101px) {
-  .hero.reference-hero .hero-portrait { inset: auto 0 .8rem auto; width: min(60%, calc(114.56svh - 90px)); max-width: 860px; height: auto; }
+  .hero.reference-hero .hero-portrait { inset: auto 10vw 0 auto; width: min(60%, calc(114.56svh - 90px)); max-width: 860px; height: auto; }
 }
 @media (max-width: 850px) {
   .hero.reference-hero .hero-portrait { aspect-ratio: 1117 / 975; }
