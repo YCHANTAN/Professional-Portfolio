@@ -35,7 +35,7 @@ for (const width of [320, 375, 768, 1440]) {
 }
 test('archive filters, skills, dialog keyboard containment and focus restoration', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(7);
+  await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(9);
   await page.getByRole('button', { name: /^AI & research/ }).click();
   await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(2);
   const opener = page.getByRole('button', { name: 'Read about Marine Biodegradation' });
@@ -55,7 +55,7 @@ test('archive filters, skills, dialog keyboard containment and focus restoration
   await expect(opener).toBeFocused();
   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
   await page.getByRole('button', { name: /^All work/ }).click();
-  await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(7);
+  await expect(page.locator('.archive-entry:not([hidden]) .project-card')).toHaveCount(9);
   await page.locator('.skill-switch').getByRole('button', { name: /Development/ }).click();
   await expect(page.locator('.skills-statement')).toHaveText('Behind the experience, a solid foundation.');
 });

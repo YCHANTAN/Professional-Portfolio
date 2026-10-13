@@ -42,12 +42,12 @@ test('archive exits before replacing cards and resizes to its visible cards', as
     await new Promise(resolve => requestAnimationFrame(resolve));
   });
   await expect(category).toHaveAttribute('aria-pressed', 'true');
-  expect(await page.locator('.archive-entry:not([hidden])').count()).toBe(7);
+  expect(await page.locator('.archive-entry:not([hidden])').count()).toBe(9);
   await expect(page.locator('.archive-entry:not([hidden])')).toHaveCount(1);
   await expect(page.locator('.archive-grid')).toHaveAttribute('aria-busy', 'false');
   expect((await page.locator('.archive-grid').boundingBox())!.height).toBeLessThan(initialHeight);
   await page.locator('.archive-filters').getByRole('button', { name: /^All work/ }).click();
-  await expect(page.locator('.archive-entry:not([hidden])')).toHaveCount(7);
+  await expect(page.locator('.archive-entry:not([hidden])')).toHaveCount(9);
   await expect(page.locator('.archive-grid')).toHaveAttribute('aria-busy', 'false');
 });
 
