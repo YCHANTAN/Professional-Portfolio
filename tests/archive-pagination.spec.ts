@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 for (const width of [375, 1366]) {
-  test(`collection paginates nine projects and resizes at ${width}px`, async ({ page }, testInfo) => {
+  test(`collection fits one nine-project page and resizes at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     const grid = page.locator('.archive-grid');
@@ -11,14 +11,7 @@ for (const width of [375, 1366]) {
     await expect(cards).toHaveCount(9);
     const fullHeight = (await page.locator('#archive').boundingBox())!.height;
     const pagination = page.getByRole('navigation', { name: 'Project pages' });
-    await expect(pagination).toHaveCount(1);
-    await pagination.getByRole('button', { name: 'Next →' }).click();
-    await expect(cards).toHaveCount(1);
-    await expect(grid).toHaveAttribute('aria-busy', 'false');
-    expect((await page.locator('#archive').boundingBox())!.height).toBeLessThan(fullHeight - 100);
-    await expect(pagination.getByRole('button', { name: 'Next →' })).toBeDisabled();
-    await pagination.getByRole('button', { name: '← Previous' }).click();
-    await expect(cards).toHaveCount(9);
+    await expect(pagination).toHaveCount(0);
     await page.locator('.archive-filters').getByRole('button', { name: /^UI\/UX/ }).click();
     await expect(cards).toHaveCount(1);
     expect((await page.locator('#archive').boundingBox())!.height).toBeLessThan(fullHeight - 100);

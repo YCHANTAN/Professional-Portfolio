@@ -115,7 +115,6 @@ html, .project-dialog, textarea { scrollbar-width: thin; scrollbar-color: var(--
 [data-project-art="educaite"] { --art-paper: #060d12; --art-ink: #25c6d3; }
 [data-project-art="pasabuy"] { --art-paper: #555bda; --art-ink: #d9dbff; }
 [data-project-art="marine"] { --art-paper: #083e51; --art-ink: #73d4d8; }
-[data-project-art="antifungal"] { --art-paper: #23374d; --art-ink: #a9d3e7; }
 [data-project-art="gourmate"] { --art-paper: #1d3c2a; --art-ink: #e8bd5d; }
 [data-project-art="lifevent"] { --art-paper: #f8f9fa; --art-ink: #637b70; }
 [data-project-art="floodsense"] { --art-paper: #0c1930; --art-ink: #1dccdf; }

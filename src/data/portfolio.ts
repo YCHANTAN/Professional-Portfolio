@@ -90,13 +90,6 @@ export const projects: Project[] = [
     stack: ['Python', 'Data analysis', 'Machine learning', 'In-silico research'], image: '/projects/marine-biodegradation-illustration.png', imageAlt: 'Conceptual ocean conservation artwork with a sea turtle, schooling fish and coral', imageKind: 'illustration', tone: 'green', headline: 'A DIFFERENT\nKIND OF DEEP DIVE.',
   },
   {
-    id: 'antifungal', title: 'Antifungal Molecule Design', category: 'AI & research', discipline: 'Computational biology / Molecular design',
-    summary: 'Computational approaches to a complex biological challenge.',
-    description: 'An in-silico exploration of antifungal molecule design against Candida auris, using molecular docking and QSAR methods.',
-    details: ['Computational biology research focused on Candida auris.', 'Molecular docking to explore candidate interactions.', 'QSAR methods for investigating molecular properties; no clinical efficacy is claimed.'],
-    stack: ['Molecular docking', 'QSAR', 'Computational biology'], image: '/projects/antifungal-molecule-illustration.png', imageAlt: 'Conceptual molecular design artwork with a ball-and-stick molecule and yeast cells', imageKind: 'illustration', tone: 'pink',
-  },
-  {
     id: 'educaite', title: 'EducAIte', category: 'Development', discipline: 'AI / Web Application',
     summary: 'A study companion for making sense of the next big idea.',
     description: 'An AI-assisted learning application bringing tutoring, summaries, and study planning into a React and TypeScript experience.',
