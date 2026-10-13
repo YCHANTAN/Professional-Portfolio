@@ -14,10 +14,52 @@ export type Category = typeof categories[number];
 export interface Project {
   id: string; title: string; category: Exclude<Category, 'All work'>; discipline: string;
   summary: string; description: string; details: string[]; stack: string[];
-  image: string; imageAlt: string; imageKind: 'mockup' | 'illustration'; tone: 'pink' | 'orange' | 'blue' | 'green' | 'yellow';
+  image: string; imageAlt: string; imageKind: 'mockup' | 'illustration' | 'screenshot'; tone: 'pink' | 'orange' | 'blue' | 'green' | 'yellow';
+  collaborative?: boolean; team?: string[]; contribution?: string; role?: string; note?: string;
+  liveUrl?: string; repositoryUrl?: string; implementationUrl?: string;
   featured?: boolean; headline?: string;
 }
 export const projects: Project[] = [
+  {
+    id: 'floodsense', title: 'FloodSense', category: 'Development', discipline: 'Full-Stack Web App / Geospatial & Disaster Tech / Civic AI',
+    summary: 'Hyper-local flood risk forecasting, crowdsourced hazard reports, and an AI safety assistant for Metro Cebu.',
+    description: 'FloodSense is an urban disaster safety platform for Metro Cebu, Philippines, calibrated for coastal urban flooding. It combines meteorological forecasts, astronomical tidal cycles, topographic elevation, historical disaster models from PAGASA and Project NOAH, and verified community reports in an interactive geospatial dashboard and a domain-bounded AI safety assistant.',
+    role: 'Full-Stack Developer & System Architect',
+    details: [
+      'Multi-factor risk engine calculating a 0–100 index across 15 neighborhood zones: rainfall (40%), tidal proximity (25%), elevation (15%), historical susceptibility (20%), and a verified-report bonus of up to 10 points.',
+      'Open-Meteo hourly rainfall mapped to PAGASA warning thresholds, with a semi-diurnal tide model and Project NOAH hazard susceptibility indices.',
+      'Interactive mapping with Mapbox/MapLibre vector tiles, custom polygon zones, and real-time report pins.',
+      'Crowdsourced reports with coordinates, water depth, and descriptions; still-flooded and cleared votes support community verification, while temporal decay reduces stale reports.',
+      'RAG-powered Google Gemini safety assistant with live zone, weather, tide, and report context, disaster-topic guardrails, and a deterministic offline fallback.',
+      'Analytics dashboard for historical trends and zone-by-zone risk distributions.',
+      'Compound unique indexes prevent duplicate voting; bounding-box pre-filtering reduces point-in-polygon checks before ray casting.',
+      'TypeScript and Drizzle ORM support typed application data, with Zod validation, JWT authentication, and sliding-window rate limiting.',
+    ],
+    stack: ['React 18', 'TypeScript 5', 'Vite 5', 'Redux Toolkit', 'React-Redux', 'React Router DOM 6', 'Mapbox GL JS', 'MapLibre GL', 'React Map GL', 'Recharts', 'Tailwind CSS v4', 'Radix UI', 'Lucide React', 'Framer Motion', 'Next.js 14', 'Node.js', 'Zod', 'PostgreSQL', 'Drizzle ORM', 'Drizzle-Kit', 'JWT', 'BcryptJS', 'Sliding-window rate limiting', 'Google Gemini 1.5 Flash', 'RAG', 'Open-Meteo API', 'PAGASA rainfall standards', 'Project NOAH data models'],
+    image: '/projects/floodsense-device-cutout.png', imageAlt: 'FloodSense disaster safety landing page displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue',
+  },
+  {
+    id: 'gourmate', title: 'GourMate', category: 'Development', discipline: 'AI Voice Assistant / Web Application',
+    summary: 'An AI cooking companion for discovering meals, planning recipes, and cooking step by step through voice and text.',
+    description: 'GourMate features Kef, an animated 3D chef that provides conversational cooking assistance. Users can suggest ingredients, request suitable dishes, customize recipes, ask cooking questions, and manage timers. Spoken responses, a chat interface, and a recipe panel support hands-free cooking.',
+    collaborative: true, team: ['Erica Gin Echavez', 'Christian Osorno', 'Christian Kyle Ducay'],
+    details: ['Meal suggestions based on available ingredients and preferences.', 'Recipe generation, planning, and revisions.', 'Guided cooking with step navigation and ingredient checklists.', 'Ingredient substitutions and cooking assistance.', 'Multilingual speech recognition and spoken responses.', 'Animated 3D chef with responsive character states.', 'Cooking timers, saved recipes, and session persistence.', 'Responsive claymorphism interface with light and dark themes.'],
+    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Three.js', 'React Three Fiber', 'React Three Drei', 'React Spring', 'Framer Motion', 'Python', 'FastAPI', 'Pydantic', 'Uvicorn', 'Google Gemini API', 'Whisper small multilingual', 'faster-whisper', 'CTranslate2', 'Silero VAD', 'ONNX Runtime', 'edge-tts', 'REST APIs', 'WebSockets', 'localStorage', 'Vitest', 'React Testing Library', 'pytest', 'Vercel', 'Railway deployment configuration', 'Git', 'GitHub', 'GitHub Actions'],
+    image: '/projects/gourmate-device-cutout.png', imageAlt: 'GourMate cooking conversation, recipe steps and Kef displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'green',
+    liveUrl: 'https://gour-mate.vercel.app/', repositoryUrl: 'https://github.com/Zycheee/GourMate',
+  },
+  {
+    id: 'lifevent', title: 'Lifevent', category: 'Development', discipline: 'AI / Event Intelligence Dashboard',
+    summary: 'Helping Lifewood discover technology exhibitions, assess business fit, and review event submissions.',
+    description: 'Lifevent combines event management with AI-assisted discovery. Users can manually scrape exhibition websites or configure scheduled discovery. The scraper uses Apify for search and Google Gemini to extract event information and assess relevance. Qualifying automatic results enter a review queue for administrator approval.',
+    collaborative: true,
+    contribution: 'Contributed to the dashboard interface and scraper integration, including the automatic qualification pipeline, review-queue improvements, duplicate handling, dashboard error fixes, and deployment documentation.',
+    note: 'Some website features require login. The testing branch may contain changes not yet deployed; production automatic scheduling has not been verified.',
+    details: ['Separate manual and automatic scraping workflows.', 'Configurable discovery periods, locations, keywords, and website limits.', 'AI extraction across 27 event-information fields and Fit Score assessment.', 'Automatic qualification of relevant Fit Score 3–5 events.', 'Edition-aware duplicate detection and callback replay protection.', 'Review queue with approval/rejection, submission-origin tags, and date filters.', 'Dashboard charts showing event distribution, business-line alignment, and coverage gaps.', 'Role-based access for users, administrators, and superadministrators.', 'Background scraping with saved progress, results, and run history.', 'Vercel cron integration for checking saved discovery schedules.'],
+    stack: ['Next.js 14', 'React 18', 'TypeScript', 'Tailwind CSS', 'Radix UI', 'Framer Motion', 'Lucide React', 'Zustand', 'React Hook Form', 'Zod', 'Recharts', 'D3 Geo', 'TopoJSON', 'Next.js API routes', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'NextAuth.js', 'bcrypt', 'Apify', 'Cheerio', 'Google Gemini API', 'Vercel', 'Vercel cron', 'Railway scraper engine', 'Node.js test runner', 'Mocked providers', 'Isolated PostgreSQL test schemas', 'ESLint', 'TypeScript checks'],
+    image: '/projects/lifevent-device-cutout.png', imageAlt: 'Lifevent technology exhibition intelligence landing page displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'green',
+    liveUrl: 'https://phlifevent.vercel.app', repositoryUrl: 'https://github.com/LifewoodPH/Lifevent', implementationUrl: 'https://github.com/LifewoodPH/Lifevent/tree/testing',
+  },
   {
     id: 'elven', title: 'Elven Boutique', category: 'Development', discipline: 'Full-stack / E-commerce',
     summary: 'A floral storefront with thoughtful commerce beneath the petals.',
