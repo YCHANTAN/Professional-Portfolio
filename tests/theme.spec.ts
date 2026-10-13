@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-test('theme follows the system until an explicit choice, and remembers that choice on reload', async ({ page }) => {
+test('theme defaults to light regardless of the system, and remembers an explicit choice on reload', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('/');
   const root = page.locator('html');
   const toggle = page.getByRole('button', { name: 'Dark mode', exact: true });
-  await expect(root).toHaveAttribute('data-theme', 'dark');
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  await expect(root).toHaveAttribute('data-theme', 'light');
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
   await page.emulateMedia({ colorScheme: 'light' });
   await expect(root).toHaveAttribute('data-theme', 'light');
   await toggle.focus();
@@ -41,6 +41,8 @@ for (const width of [320, 1101, 1366, 1920]) {
     await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' });
     await page.goto('/');
     const toggle = page.getByRole('button', { name: 'Dark mode', exact: true });
+    await toggle.click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     const box = (await toggle.boundingBox())!;
     expect(box.width).toBeGreaterThanOrEqual(44);
     expect(box.height).toBeGreaterThanOrEqual(44);

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 const storageKey = 'portfolio-theme';
@@ -9,28 +9,22 @@ function savedTheme(): Theme | null {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
-  const preference = useRef<Theme | null>(savedTheme());
+  const [theme, setTheme] = useState<Theme>(() => savedTheme() ?? 'light');
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#101216' : '#f4f0e6');
   }, [theme]);
   useEffect(() => {
-    const system = window.matchMedia('(prefers-color-scheme: dark)');
-    const followSystem = () => { if (!preference.current) setTheme(system.matches ? 'dark' : 'light'); };
     const synchronize = (event: StorageEvent) => {
       if (event.key !== storageKey && event.key !== null) return;
-      preference.current = isTheme(event.newValue) ? event.newValue : null;
-      setTheme(preference.current ?? (system.matches ? 'dark' : 'light'));
+      setTheme(isTheme(event.newValue) ? event.newValue : 'light');
     };
-    system.addEventListener('change', followSystem);
     window.addEventListener('storage', synchronize);
-    return () => { system.removeEventListener('change', followSystem); window.removeEventListener('storage', synchronize); };
+    return () => window.removeEventListener('storage', synchronize);
   }, []);
   function toggle() {
     const next = theme === 'light' ? 'dark' : 'light';
-    preference.current = next;
     setTheme(next);
     try { localStorage.setItem(storageKey, next); } catch { /* The switch still works when storage is unavailable. */ }
   }
