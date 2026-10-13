@@ -109,13 +109,17 @@ html, .project-dialog, textarea { scrollbar-width: thin; scrollbar-color: var(--
 
 /* Project-specific editorial canvases: artwork stays at the edges of the media. */
 [data-project-art] { position: relative; isolation: isolate; overflow: hidden; --art-paper: #f5e6e9; --art-ink: #a44768; background: var(--art-paper) !important; }
-[data-project-art="elven"] { --art-paper: #efe6dc; --art-ink: #527354; }
-[data-project-art="laundry"] { --art-paper: #e8eaf7; --art-ink: #8574a1; }
-[data-project-art="registration"] { --art-paper: #eef0d2; --art-ink: #637443; }
-[data-project-art="educaite"] { --art-paper: #dcf1f2; --art-ink: #297a88; }
-[data-project-art="pasabuy"] { --art-paper: #e7e3fc; --art-ink: #6552ce; }
-[data-project-art="marine"] { --art-paper: #d7ece8; --art-ink: #28787b; }
-[data-project-art="antifungal"] { --art-paper: #e0e8f0; --art-ink: #42678a; }
+[data-project-art="elven"] { --art-paper: #e8e3d8; --art-ink: #527354; }
+[data-project-art="laundry"] { --art-paper: #704a6d; --art-ink: #ead3e6; }
+[data-project-art="registration"] { --art-paper: #172a1c; --art-ink: #c5ad56; }
+[data-project-art="educaite"] { --art-paper: #060d12; --art-ink: #25c6d3; }
+[data-project-art="pasabuy"] { --art-paper: #555bda; --art-ink: #d9dbff; }
+[data-project-art="marine"] { --art-paper: #083e51; --art-ink: #73d4d8; }
+[data-project-art="antifungal"] { --art-paper: #23374d; --art-ink: #a9d3e7; }
+[data-project-art="gourmate"] { --art-paper: #1d3c2a; --art-ink: #e8bd5d; }
+[data-project-art="lifevent"] { --art-paper: #f8f9fa; --art-ink: #637b70; }
+[data-project-art="floodsense"] { --art-paper: #0c1930; --art-ink: #1dccdf; }
+[data-image-kind="screenshot"] .image-caption { background: #f4f0e6; color: #1d3c2a; }
 .project-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; fill: none; stroke: var(--art-ink); stroke-width: 3; opacity: .55; }
 .project-backdrop .backdrop-grid { stroke-width: .6; opacity: .2; }
 .project-backdrop .backdrop-spark { stroke-width: 5; }
