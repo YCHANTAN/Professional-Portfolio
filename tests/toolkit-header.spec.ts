@@ -13,8 +13,9 @@ for (const width of [375, 1440]) {
     const height = (await panel.boundingBox())!.height;
     const development = page.locator('.skill-switch').getByRole('button', { name: /Development/ });
     const design = page.locator('.skill-switch').getByRole('button', { name: /Design/ });
+    const general = page.locator('.skill-switch').getByRole('button', { name: /General/ });
     await expect(page.locator('.skill-switch button').first()).toHaveText(/Development/);
-    await expect(page.locator('.skill-switch button').last()).toHaveText(/Design/);
+    await expect(page.locator('.skill-switch button').last()).toHaveText(/General/);
     await expect(development).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('.skills-statement')).toHaveText('Behind the experience, a solid foundation.');
     await design.evaluate(async button => { (button as HTMLButtonElement).click(); await new Promise(resolve => requestAnimationFrame(resolve)); });
@@ -22,6 +23,12 @@ for (const width of [375, 1440]) {
     await expect(page.locator('.skills-statement')).toHaveText('Behind the experience, a solid foundation.');
     await expect(page.locator('.skills-statement')).toHaveText('Before the pixels, the people.');
     await page.waitForTimeout(300);
+    expect((await panel.boundingBox())!.height).toBeCloseTo(height, 0);
+    await general.click();
+    await expect(general).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.skills-statement')).toHaveText('Good work takes more than technical skills.');
+    await expect(page.locator('.skill-groups:not([hidden])').getByText('Working under pressure', { exact: true })).toBeVisible();
+    await expect(page.locator('.skill-groups:not([hidden])').getByText('Power BI', { exact: true })).toBeVisible();
     expect((await panel.boundingBox())!.height).toBeCloseTo(height, 0);
     await development.click();
     await expect(page.locator('.skills-statement')).toHaveText('Behind the experience, a solid foundation.');
