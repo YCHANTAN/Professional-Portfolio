@@ -142,9 +142,6 @@ y -= 6
 entry('Marine Biodegradation | Python, Machine Learning', 'Late 2025')
 bullet('University of Cebu - Main Campus: in-silico research exploring synthetic plastics degradation under ocean conditions through data analysis and machine learning.')
 y -= 6
-entry('Antifungal Molecule Design | Molecular Docking, QSAR')
-bullet('In-silico exploration of candidate antifungal molecules against Candida auris using molecular docking and QSAR methods.')
-y -= 6
 entry('Pasabuy | Figma, UX Research, UI/UX Design')
 bullet('Shared-errand design exploration using user journeys, wireframes, and Figma interfaces for courier and commissioner flows.')
 
