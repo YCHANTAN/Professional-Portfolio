@@ -5,8 +5,8 @@ import { SectionHeading } from './SectionHeading';
 import { useMotionPreference } from './motion/useMotionPreference';
 
 type Discipline = keyof typeof skills;
-const disciplines: Discipline[] = ['Development', 'Design'];
-const statements = { Design: 'Before the pixels, the people.', Development: 'Behind the experience, a solid foundation.' };
+const disciplines: Discipline[] = ['Development', 'Design', 'General'];
+const statements = { Design: 'Before the pixels, the people.', Development: 'Behind the experience, a solid foundation.', General: 'Good work takes more than technical skills.' };
 
 /** Toolkit-only exit/commit/entry: controls stay responsive, one panel is visible. */
 export function SkillsToolkit() {
@@ -22,7 +22,7 @@ export function SkillsToolkit() {
     const statement = element.querySelector<HTMLElement>('.skills-statement');
     if (!statement) return;
     const measure = () => {
-      // Measure both disciplines in the SAME grid before paint. Restore the
+      // Measure all disciplines in the SAME grid before paint. Restore the
       // committed text/visibility immediately; never mount a duplicate statement.
       const text = statement.textContent;
       const hidden = groups.map(group => group.hidden);
@@ -68,11 +68,11 @@ export function SkillsToolkit() {
 
   return <section className="skills-section" id="skills">
     <div className="skills-header">
-      <SectionHeading label="03 / My toolkit" title="LEFT BRAIN. RIGHT BRAIN." />
+      <SectionHeading label="03 / My toolkit" title="DESIGN. BUILD. COLLABORATE." />
       <div className="skill-switch" role="group" aria-label="Choose a skills discipline">
         {disciplines.map(mode => <button key={mode} aria-pressed={requested === mode} onClick={() => setRequested(mode)}>
           {requested === mode && <motion.span className="skill-active-indicator" layoutId="skill-active-indicator" transition={{ duration: reducedMotion ? 0 : .2, ease: [.22, 1, .36, 1] }} />}
-          <span className="skill-tab-label">{mode} <span aria-hidden="true">{mode === 'Design' ? '✳' : '</>'}</span></span>
+          <span className="skill-tab-label">{mode} <span aria-hidden="true">{mode === 'Design' ? '✳' : mode === 'General' ? '↔' : '</>'}</span></span>
         </button>)}
       </div>
     </div>

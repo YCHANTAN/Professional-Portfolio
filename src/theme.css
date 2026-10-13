@@ -129,6 +129,24 @@ html, .project-dialog, textarea { scrollbar-width: thin; scrollbar-color: var(--
 [data-image-kind="mockup"][data-project-art] img { padding: 1.5rem 2.2rem 2.2rem; }
 [data-image-kind="illustration"][data-project-art] img { padding: 1.5rem 2.2rem 2.2rem; }
 .spread-art[data-project-art] img { padding: 2.5rem 3.5rem; }
+/* Selected text panels pair with each application's preview palette in both themes. */
+.project-spread.spread-educaite { --spread-paper: #10252c; --spread-ink: #e8f4f4; --spread-accent: #54dce6; }
+.project-spread.spread-floodsense { --spread-paper: #ccebf0; --spread-ink: #102b43; --spread-accent: #124ea0; }
+.project-spread.spread-lifevent { --spread-paper: #183d2d; --spread-ink: #f8f5ec; --spread-accent: #efbd64; }
+.project-spread.spread-elven { --spread-paper: #dce3d4; --spread-ink: #203d30; --spread-accent: #315b46; }
+.project-spread:is(.spread-educaite, .spread-floodsense, .spread-lifevent, .spread-elven) { background: var(--spread-paper); color: var(--spread-ink); }
+.project-spread .round-link:hover .round-arrow,
+[data-theme="dark"] .project-spread .round-link:hover .round-arrow { background: var(--spread-ink); color: var(--spread-paper); }
+.project-spread :focus-visible { outline-color: var(--spread-accent); }
+.skill-switch .skill-tab-label { margin-left: 0; }
+.skill-switch .skill-tab-label > span { margin-left: .5rem; }
+@media (max-width: 700px) {
+  .skill-switch { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+  .skill-switch button { min-width: 0; padding: .8rem .35rem; font-size: .72rem; }
+}
+@media (max-width: 420px) {
+  .skill-switch .skill-tab-label > span { display: none; }
+}
 @media (max-width: 700px) {
   [data-project-art] img, .spread-art[data-project-art] img { padding: 1.3rem 1.4rem 2rem; }
   .project-backdrop { stroke-width: 3.5; }

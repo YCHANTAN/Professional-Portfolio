@@ -36,7 +36,7 @@ export const projects: Project[] = [
       'TypeScript and Drizzle ORM support typed application data, with Zod validation, JWT authentication, and sliding-window rate limiting.',
     ],
     stack: ['React 18', 'TypeScript 5', 'Vite 5', 'Redux Toolkit', 'React-Redux', 'React Router DOM 6', 'Mapbox GL JS', 'MapLibre GL', 'React Map GL', 'Recharts', 'Tailwind CSS v4', 'Radix UI', 'Lucide React', 'Framer Motion', 'Next.js 14', 'Node.js', 'Zod', 'PostgreSQL', 'Drizzle ORM', 'Drizzle-Kit', 'JWT', 'BcryptJS', 'Sliding-window rate limiting', 'Google Gemini 1.5 Flash', 'RAG', 'Open-Meteo API', 'PAGASA rainfall standards', 'Project NOAH data models'],
-    image: '/projects/floodsense-device-cutout.png', imageAlt: 'FloodSense disaster safety landing page displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue',
+    image: '/projects/floodsense-device-cutout.png', imageAlt: 'FloodSense disaster safety landing page displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue', featured: true,
   },
   {
     id: 'gourmate', title: 'GourMate', category: 'Development', discipline: 'AI Voice Assistant / Web Application',
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     note: 'Some website features require login. The testing branch may contain changes not yet deployed; production automatic scheduling has not been verified.',
     details: ['Separate manual and automatic scraping workflows.', 'Configurable discovery periods, locations, keywords, and website limits.', 'AI extraction across 27 event-information fields and Fit Score assessment.', 'Automatic qualification of relevant Fit Score 3–5 events.', 'Edition-aware duplicate detection and callback replay protection.', 'Review queue with approval/rejection, submission-origin tags, and date filters.', 'Dashboard charts showing event distribution, business-line alignment, and coverage gaps.', 'Role-based access for users, administrators, and superadministrators.', 'Background scraping with saved progress, results, and run history.', 'Vercel cron integration for checking saved discovery schedules.'],
     stack: ['Next.js 14', 'React 18', 'TypeScript', 'Tailwind CSS', 'Radix UI', 'Framer Motion', 'Lucide React', 'Zustand', 'React Hook Form', 'Zod', 'Recharts', 'D3 Geo', 'TopoJSON', 'Next.js API routes', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'NextAuth.js', 'bcrypt', 'Apify', 'Cheerio', 'Google Gemini API', 'Vercel', 'Vercel cron', 'Railway scraper engine', 'Node.js test runner', 'Mocked providers', 'Isolated PostgreSQL test schemas', 'ESLint', 'TypeScript checks'],
-    image: '/projects/lifevent-device-cutout.png', imageAlt: 'Lifevent technology exhibition intelligence landing page displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'green',
+    image: '/projects/lifevent-device-cutout.png', imageAlt: 'Lifevent technology exhibition intelligence landing page displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'green', featured: true,
     liveUrl: 'https://phlifevent.vercel.app', repositoryUrl: 'https://github.com/LifewoodPH/Lifevent', implementationUrl: 'https://github.com/LifewoodPH/Lifevent/tree/testing',
   },
   {
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     summary: 'Making the everyday laundry workflow a little clearer.',
     description: 'A laundry management application with an interface for following orders, notifications, and inventory.',
     details: ['Order tracking for laundry workflows.', 'Notifications to keep order information visible.', 'Inventory management built into the application.'],
-    stack: ['React', 'TypeScript', 'Tailwind CSS'], image: '/projects/sofia-laundry-device-cutout.png', imageAlt: 'Sofia’s Laundry sign-in interface displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue', featured: true,
+    stack: ['React', 'TypeScript', 'Tailwind CSS'], image: '/projects/sofia-laundry-device-cutout.png', imageAlt: 'Sofia’s Laundry sign-in interface displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'blue',
   },
   {
     id: 'registration', title: 'Student Registration App', category: 'Development', discipline: 'Full-stack / Education',
@@ -108,14 +108,14 @@ export const projects: Project[] = [
     summary: 'Shared neighborhood errands, designed around real journeys.',
     description: 'A UX design exploration of shared neighborhood errands, translating user journeys into wireframes and Figma designs.',
     details: ['Journey mapping for shared errands in a neighborhood context.', 'Wireframes exploring the experience and its core flows.', 'Figma designs connecting user needs with an intuitive interface.'],
-    stack: ['Figma', 'User journeys', 'Wireframing', 'UI/UX design'], image: '/projects/pasabuy-device-cutout.png', imageAlt: 'Pasabuy courier dashboard and onboarding displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'orange', featured: true, headline: 'SMALL ERRANDS.\nSHARED CONNECTIONS.',
+    stack: ['Figma', 'User journeys', 'Wireframing', 'UI/UX design'], image: '/projects/pasabuy-device-cutout.png', imageAlt: 'Pasabuy courier dashboard and onboarding displayed on a laptop, tablet and phone', imageKind: 'mockup', tone: 'orange', headline: 'SMALL ERRANDS.\nSHARED CONNECTIONS.',
   },
 ];
-export const featuredProjects = ['elven', 'pasabuy', 'educaite', 'laundry'].map(id => projects.find(p => p.id === id)!);
+export const featuredProjects = ['educaite', 'floodsense', 'lifevent', 'elven'].map(id => projects.find(p => p.id === id)!);
 export const experience = [
   { date: '2024 — present', role: 'Freelance designer & developer', place: 'Christian.dev', detail: 'Bringing intuitive, user-centered design and scalable engineering together.' },
-  { date: '2024', role: 'UI/UX Design Intern', place: 'PixelCraft Studios', detail: 'Journey mapping, Figma prototyping, and usability.' },
-  { date: '2023 — 2024', role: 'Environmental project', place: 'Coral Triangle Center', detail: 'Exploring the intersection of environmental research and technology.' },
+  { date: '2026', role: 'Full Stack AI Engineer', place: 'Lifewood Data Technology', detail: 'Building connected web interfaces, backend services, and AI integrations to turn complex workflows into practical tools.' },
+  { date: '2023 — 2024', role: 'Environmental project', place: 'University of Cebu – Main Campus', detail: 'Exploring the intersection of environmental research and technology.' },
   { date: '2023 — present', role: 'Computer Science student', place: 'University of Cebu — Main Campus', detail: '4th-year CS student, looking for work opportunities.' },
 ];
 export const skills = {
@@ -125,8 +125,15 @@ export const skills = {
     { label: 'Collaborate', items: ['Agile', 'Design–development collaboration'] },
   ],
   Development: [
-    { label: 'Interface', items: ['React 19', 'TypeScript', 'JavaScript', 'Next.js', 'Vite', 'Tailwind CSS', 'Motion', 'TanStack Query'] },
-    { label: 'Systems', items: ['Node.js', 'Express', 'NestJS', '.NET 8', 'C#', 'PostgreSQL', 'SQLite', 'Prisma', 'Zod', 'JWT', 'Git', 'Agile'] },
-    { label: 'Intelligence', items: ['Python', 'Machine learning', 'Molecular docking', 'QSAR', 'AI automation'] },
+    { label: 'Interface', items: ['React 19', 'TypeScript', 'JavaScript', 'Next.js', 'Vite', 'Tailwind CSS', 'Motion', 'TanStack Query', 'Frontend architecture', 'Component development', 'Voice assistant interfaces'] },
+    { label: 'Systems', items: ['Node.js', 'Express', 'NestJS', '.NET 8', 'C#', 'PostgreSQL', 'SQLite', 'Prisma', 'Zod', 'JWT', 'Git', 'Agile', 'System architecture', 'API integration', 'Automated web scraping'] },
+    { label: 'Intelligence', items: ['Python', 'Machine learning', 'Molecular docking', 'QSAR', 'AI automation', 'Prompt engineering', 'AI agent integration', 'HeyGen', 'NotebookLM', 'Text-to-image tools'] },
+    { label: 'Delivery', items: ['Team Git workflows', 'Branch merging', 'Repository migration', 'Environment configuration', 'Deployment troubleshooting', 'Runtime debugging', 'Local feature testing', 'Release management'] },
+  ],
+  General: [
+    { label: 'People', items: ['Communication', 'Teamwork', 'Leadership', 'Stakeholder alignment', 'Client & mentor communication', 'Receiving & applying feedback'] },
+    { label: 'Work habits', items: ['Flexibility', 'Multitasking', 'Problem solving', 'Documentation writing', 'Punctuality', 'Fast learning', 'Working under pressure', 'Organization', 'Following procedures'] },
+    { label: 'Project planning', items: ['Timeline planning', 'Task allocation', 'Prioritization', 'Managing changing requirements', 'Technical handovers', 'Production planning'] },
+    { label: 'Reporting & reach', items: ['Power BI', 'Google Data Studio', 'Business intelligence reporting', 'Data visualization', 'Presenting insights', 'SEO', 'AEO', 'GEO', 'Digital content distribution'] },
   ],
 };
