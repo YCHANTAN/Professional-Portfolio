@@ -1,0 +1,22 @@
+.pixel-companion-layer { position: fixed; inset: 0; pointer-events: none; z-index: 35; }
+.companion-safe-area { position: absolute; visibility: hidden; pointer-events: none; padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }
+.companion-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.pixel-companion { position: absolute; top: 0; left: 0; pointer-events: none; will-change: transform; z-index: 2; }
+.companion-cat { position: absolute; top: 0; left: 0; pointer-events: none; will-change: transform; }
+.cat-sprite { width: 100%; height: 100%; display: block; image-rendering: pixelated; pointer-events: none; }
+.companion-grab { position: absolute; inset: 0 18%; width: 64%; height: 100%; display: block; padding: 0; border: 0; border-radius: 0; color: inherit; background: transparent; cursor: grab; pointer-events: auto; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.companion-grab:hover, .companion-grab:active { background: transparent; }
+.pixel-companion[data-mode="drag"] .companion-grab { cursor: grabbing; }
+.companion-grab:focus-visible { outline: 2px dashed var(--ink, #171714); outline-offset: 3px; }
+.companion-sprite { position: absolute; top: 0; left: -28.125%; width: 156.25%; height: 100%; display: block; image-rendering: pixelated; pointer-events: none; transform-origin: center; }
+.companion-menu { position: absolute; width: 180px; box-sizing: border-box; padding: .65rem; border: 1px solid var(--ink, #171714); background: var(--paper, #f4f0e6); color: var(--ink, #171714); box-shadow: 3px 3px 0 var(--ink, #171714); pointer-events: auto; }
+.companion-menu-title { display: block; font-family: var(--mono, monospace); font-size: .6rem; line-height: 1.4; margin-bottom: .4rem; }
+.companion-menu > div { display: flex; gap: .4rem; }
+.companion-menu button { flex: 1; min-height: 44px; padding: .4rem; border: 1px solid var(--ink, #171714); background: transparent; color: inherit; font-family: var(--mono, monospace); font-size: .7rem; cursor: pointer; }
+.companion-menu button:first-child { background: var(--ink, #171714); color: var(--paper, #f4f0e6); }
+.companion-menu button:hover { background: var(--acid, #e5ef55); color: #171714; }
+.companion-menu button:focus-visible, .companion-show:focus-visible { outline: 3px solid var(--blue, #2445ed); outline-offset: 3px; }
+.companion-show { position: absolute; right: calc(24px + env(safe-area-inset-right, 0px)); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); min-height: 44px; padding: .55rem .7rem; display: flex; align-items: center; gap: .5rem; border: 1px solid var(--ink, #171714); background: var(--paper, #f4f0e6); color: var(--ink, #171714); font-family: var(--mono, monospace); font-size: .65rem; pointer-events: auto; cursor: pointer; }
+.companion-show > span:first-child { font-size: 1.3rem; line-height: 1; }
+.pixel-companion-layer[aria-hidden="true"] { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { .pixel-companion, .companion-cat { will-change: auto; } }

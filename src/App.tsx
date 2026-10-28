@@ -16,6 +16,7 @@ import { ThemeToggle } from './components/ThemeToggle';
 import { ContentTransition } from './components/motion/ContentTransition';
 import { DisciplineMarquee } from './components/motion/DisciplineMarquee';
 import { OpeningDepth, ProjectStack } from './components/motion/SectionDepth';
+import { PixelCompanion } from './components/companion/PixelCompanion';
 
 export default function App() {
   const activeSection = useActiveSection();
@@ -56,5 +57,6 @@ export default function App() {
         </ContentTransition><ContentTransition reveal delay={.08}><ContactForm /></ContentTransition></div><ContentTransition reveal><footer className="site-footer"><a className="wordmark" href="#home">christian<span>®</span></a><SocialLinks /><a href="#home" className="back-top">Back to top ↑</a><div className="footer-bottom mono"><span>© {new Date().getFullYear()} Christian A. Osorno</span><span>Designed with intention. Built with React.</span></div></footer></ContentTransition></section>
     </main>
     <ProjectDialog project={activeProject} onClose={() => setActiveProject(null)} />
+    <PixelCompanion suspended={activeProject !== null} />
   </>;
 }
