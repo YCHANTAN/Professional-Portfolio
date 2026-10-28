@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { useCompanion } from './useCompanion';
 import { CompanionSprite } from './CompanionSprite';
+import { CatCompanion } from './CatCompanion';
 import './companion.css';
 
 const ATLAS = '/avatars/christian-animations.png';
@@ -65,6 +66,7 @@ export function PixelCompanion({ suspended = false }: { suspended?: boolean }) {
         <div><button ref={hideRef} type="button" onClick={companion.hide}>Hide</button><button ref={cancelRef} type="button" onClick={() => companion.closeMenu()}>Cancel</button></div>
       </div>}
     </motion.div>}
+    {!view.hidden && atlas && view.ready && <CatCompanion ownerX={x} ownerY={y} ownerSize={view.size} ownerMode={view.mode} paused={suspended || view.menu} />}
     {failed && !view.hidden && <button className="companion-show" onClick={companion.hide}>Hide unavailable avatar</button>}
   </div>;
 }
